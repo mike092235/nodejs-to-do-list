@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 
 // Connect to Mongo Database
 var db;
-MongoClient.connect('mongodb://mikemike:mikemike@ds127892.mlab.com:27892/my-app-db', (err, database) => {
+MongoClient.connect('mongodb://'user':'pass'@ds127892.mlab.com:27892/my-app-db', (err, database) => {
   if(err) return console.log(err);
   db = database;
   app.listen(3001, function() {
@@ -28,6 +28,14 @@ app.post('/quotes', function(req, res) {
   db.collection('quotes').save(req.body, function(err, results) {
     if(err) return console.log(err);
     res.redirect('/');
+  });
+});
+
+// Find Quotes
+app.get('/quotes', function(req, res){
+  db.collection('quotes').find().toArray(function(err, results){
+    if(err) return console.log(err);
+    res.render('index.ejs', {quotes: results});
   });
 });
 
