@@ -2,7 +2,7 @@
 ### A simple to-do list app written in Node.js
 
 + `node_modules` ignored dl using `npm install`
-+ Run using `npm start` or `nodemon`
++ Run using `node server.js` or `nodemon`
 
 ## Technologies Used
 + Express.js
